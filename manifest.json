@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "HotkeyMuzzle",
+  "version": "1.0.0",
+  "description": "Temporarily disable keyboard shortcuts with customizable controls",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "commands"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["content.js"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "HotkeyMuzzle"
+  },
+  
+  "options_page": "options.html"
+
+}

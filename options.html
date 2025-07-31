@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotkeyMuzzle Settings</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            color: #212529;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            font-size: 16px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #374151;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+        
+        .whitelist {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 16px;
+            background: #f9fafb;
+        }
+        
+        .whitelist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .whitelist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .shortcut-combo {
+            font-family: monospace;
+            background: #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .remove-btn {
+            padding: 4px 8px;
+            font-size: 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+        
+        .save-status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .save-status.success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .save-status.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .help-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+        
+        .add-shortcut-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .add-shortcut-input .form-control {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🔇 HotkeyMuzzle</div>
+        <div class="subtitle">Configure global keyboard shortcut blocking</div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Notifications</div>
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="show-notifications" class="checkbox">
+                <label for="show-notifications" class="form-label">Show notifications when shortcuts are blocked</label>
+            </div>
+            <div class="help-text">
+                When enabled, you'll see toast notifications showing which shortcut was blocked.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="show-state-notifications" class="checkbox">
+                <label for="show-state-notifications" class="form-label">Show notifications when blocking is enabled/disabled</label>
+            </div>
+            <div class="help-text">
+                Display toast notifications when HotkeyMuzzle blocking is turned on or off.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="notification-duration" class="form-label">Notification duration (milliseconds)</label>
+            <input type="text" id="notification-duration" class="form-control" placeholder="1500">
+            <div class="help-text">
+                How long notifications should be displayed before automatically disappearing. Enter any positive number in milliseconds. Default is 1500ms (1.5 seconds).
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Whitelisted Shortcuts</div>
+        <div class="form-group">
+            <label class="form-label">These shortcuts will always work, even when blocking is active:</label>
+            <div id="whitelist" class="whitelist">
+                <!-- Whitelist items will be populated by JavaScript -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Add new shortcut to whitelist:</label>
+            <div class="add-shortcut-input">
+                <input type="text" id="new-shortcut-input" class="form-control" placeholder="e.g. cmd+shift+x">
+                <button id="add-whitelist-btn" class="btn btn-primary">Add</button>
+            </div>
+            <div class="help-text">
+                Enter shortcuts in the format: cmd+key, ctrl+key, alt+key, etc.
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <button id="save-btn" class="btn btn-primary">Save Settings</button>
+        <button id="reset-btn" class="btn btn-danger">Reset to Defaults</button>
+        <div id="save-status" class="save-status" style="display: none;"></div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+</html>
