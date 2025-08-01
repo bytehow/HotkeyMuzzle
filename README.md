@@ -1,5 +1,8 @@
 # HotkeyMuzzle 🔇
 
+> [!WARNING]
+> vibe coded garbage, but good enough for what I wanted
+
 A Chrome extension that temporarily disables keyboard shortcuts with customizable controls. Perfect for preventing accidental keyboard shortcuts while gaming, testing, or when you need to temporarily mute browser hotkeys.
 
 ## What It Does
